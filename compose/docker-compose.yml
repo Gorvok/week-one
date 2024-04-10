@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  php:
+    image: php:latest
+    volumes:
+      - ../php:/usr/src/myapp
+    working_dir: /usr/src/myapp
+    command: php hello.php
+
+  python:
+    image: python:latest
+    volumes:
+      - ../python:/usr/src/myapp
+    working_dir: /usr/src/myapp
+    command: python hello.py
+
+  lua:
+    image: alpine:latest
+    volumes:
+      - ../lua:/usr/src/myapp
+    working_dir: /usr/src/myapp
+    command: sh -c "apk add lua5.3 && lua5.3 hello.lua"
+
+  golang:
+    image: golang:latest
+    volumes:
+      - ../golang:/usr/src/myapp
+    working_dir: /usr/src/myapp
+    command: sh -c "go build hello.go && ./hello"
